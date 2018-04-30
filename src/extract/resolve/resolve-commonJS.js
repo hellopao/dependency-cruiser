@@ -21,8 +21,9 @@ module.exports = (pModuleName, pBaseDir, pFileDir) => {
         couldNotResolve : false,
         dependencyTypes : ["undetermined"]
     };
-
-    if (resolve.isCore(pModuleName)){
+    
+    var pPackageDeps = readPackageDeps(pFileDir);
+    if (resolve.isCore(pModuleName) && !pPackageDeps.dependencies[pModuleName] && !pPackageDeps.devDependencies[pModuleName]){
         lRetval.coreModule = true;
     } else {
         try {
