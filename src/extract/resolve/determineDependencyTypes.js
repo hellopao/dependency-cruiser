@@ -44,7 +44,7 @@ module.exports = (pDependency, pModuleName, pPackageDeps, pBaseDir) => {
 
     if (pDependency.couldNotResolve) {
         lRetval = ["unknown"];
-    } else if (resolve.isCore(pModuleName)) {
+    } else if (resolve.isCore(pModuleName) && !pPackageDeps.dependencies[pModuleName] && !pPackageDeps.devDependencies[pModuleName]) {
         // this 'resolve.isCore' business seems duplicate (it's already in
         // the passed object as `coreModule`- determined by the resolve-AMD or
         // resolve-commonJS module). I want to deprecate the `coreModule`
